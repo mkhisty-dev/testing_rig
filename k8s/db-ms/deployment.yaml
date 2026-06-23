@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-service
+  template:
+    metadata:
+      labels:
+        app: db-service
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+        - name: db-service
+          image: db-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6000
+          volumeMounts:
+            - name: db-storage
+              mountPath: /data
+      volumes:
+        - name: db-storage
+          emptyDir: {}
