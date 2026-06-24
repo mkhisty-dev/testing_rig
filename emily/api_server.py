@@ -11,7 +11,7 @@ from typing import Any
 
 from flask import Flask, jsonify, render_template, request
 
-import testing_rig.emily.db_server as db_server
+import testing_rig.Emily.db_server as db_server
 
 
 BASE_DIR = Path(__file__).resolve().parent
